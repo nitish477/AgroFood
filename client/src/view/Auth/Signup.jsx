@@ -404,7 +404,7 @@ function Signup() {
                       type="button"
                       className="text-green-600 hover:text-green-500 font-medium"
                     >
-                      hugginh
+                      Login
                     </button>
                   </Link>
                 </p>
