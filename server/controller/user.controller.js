@@ -29,19 +29,23 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required");
   }
 
+  // Check if roles is provided as a string and convert it to an array
+  if (!roles || roles.trim() === "") {
+    throw new ApiError(400, "Role is required");
+  }
+
   // Check if a user with the same email already exists (for any role)
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw new ApiError(400, "Email already exists");
   }
 
-  const userRoles = roles && roles.length > 0 ? roles : ["user"]; // Default role is "user" if not provided
 
   const user = await User.create({
     fullName,
     email,
     password,
-    roles: userRoles, // Assign roles here
+    roles, 
   });
 
   const createdUser = await User.findById(user._id).select("-password -refreshToken");

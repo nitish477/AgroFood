@@ -4,6 +4,14 @@ import Login from "./view/Auth/Login";
 import Signup from "./view/Auth/Signup";
 import AuthLayout from "./Layouts/AuthLayout";
 import DashboardLayout from "./Layouts/DashboardLayout";
+import Order from "./view/Customer/Order";
+import Products from "./view/Admin/Products";
+import ProductsUser from "./view/Customer/Products";
+import AddProducts from "./view/Admin/AddProducts";
+import UpdateProduct from "./view/Admin/UpdateProduct";
+import Dashboard from "./view/Admin/Dashboard";
+import ProductDetails from "./view/Customer/ProductDetails";
+import Cart from "./view/Customer/Cart";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -32,21 +40,48 @@ const router = createBrowserRouter([
           path: "users",
           children: [
             {
-              path: "",
-              element: <Navigate to="list" replace />,
+              path: "order",
+              element:<Order/>,
+            },
+            {
+              path: "cart",
+              element:<Cart/>,
+            },
+            {
+              path: "product",
+              element:<ProductsUser/>,
+            },
+            {
+              path: "product-details/:productId",
+              element:<ProductDetails/>,
             },
             
             
           ],
         },
         {
-          path: "bookings",
+          path: "admin",
           children: [
-            
+            {
+              path: "list",
+              element:<Products/>,
+            },
+            {
+              path: "add-product",
+              element:<AddProducts/>,
+            },
+            {
+              path: "edit-product/:id",
+              element:<UpdateProduct/>,
+            },
+            {
+              path: "system",
+              element:<Dashboard/>,
+            },
           ],
         },
         {
-          path: "financial",
+          path: "farmer",
           children: [
            
           ],

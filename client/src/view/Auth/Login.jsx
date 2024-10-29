@@ -62,6 +62,7 @@ function Login() {
           await new Promise((resolve) => setTimeout(resolve, 1000));
           localStorage.setItem("token",res?.data?.data?.accessToken)
           localStorage.setItem("userRole",JSON.stringify(res?.data?.data?.user?.roles))
+          localStorage.setItem("ID",JSON.stringify(res?.data?.data?.user?._id))
           navigate('/dashboard');  // Redirect to the appropriate page
         }
       } catch (error) {
