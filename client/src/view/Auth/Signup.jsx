@@ -11,7 +11,7 @@ function Signup() {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "", // Changed from roles array to single role string
+    roles: "", // Changed from roles array to single role string
   });
 
   const [showPassword, setShowPassword] = useState({
@@ -54,13 +54,6 @@ function Signup() {
     }));
   };
 
-  // Modified to handle single role selection
-  const handleRoleChange = (roleId) => {
-    setFormData((prev) => ({
-      ...prev,
-      role: roleId,
-    }));
-  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -78,8 +71,8 @@ function Signup() {
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
-    if (!formData.role) {
-      newErrors.role = "Please select a role"; // Changed error message for single role
+    if (!formData.roles) {
+      newErrors.roles = "Please select a role"; // Changed error message for single role
     }
     return newErrors;
   };
@@ -325,12 +318,12 @@ function Signup() {
               {/* Modified Roles section for single selection */}
               <div
                 className={`transform transition-all duration-300 ${
-                  currentField === "role" ? "scale-105" : ""
+                  currentField === "roles" ? "scale-105" : ""
                 }`}
               >
                 <div className="relative">
                   <label
-                    htmlFor="role"
+                    htmlFor="roles"
                     className={`block text-sm font-medium transition-colors duration-300 ${
                       currentField === "role"
                         ? "text-green-600"
@@ -340,11 +333,11 @@ function Signup() {
                     Select Role
                   </label>
                   <select
-                    id="role"
-                    name="role"
-                    value={formData.role}
+                    id="roles"
+                    name="roles"
+                    value={formData.roles}
                     onChange={handleChange}
-                    onFocus={() => handleFocus("role")}
+                    onFocus={() => handleFocus("roles")}
                     onBlur={handleBlur}
                     className={`mt-1 block w-full px-4 py-3 border-2 rounded-lg shadow-sm 
         transition-all duration-300 ease-in-out appearance-none
